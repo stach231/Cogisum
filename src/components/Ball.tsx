@@ -14,10 +14,9 @@ interface Props{
 
 export default function Ball({position,value,play,add,mainValue,onChangeValue}:Props){
     
-    const [click, setClick] = useState<boolean>(false);
-    const [clickEnd, setClickEnd] = useState<boolean>(false);
-    const [randomValue, setRandomValue] = useState<number>(0);
-    const clickValue = useRef<number>(0); 
+    const [click, setClick] = useState<boolean>(false); // Start animacji
+    const [clickEnd, setClickEnd] = useState<boolean>(false); // Restart animacji
+    const clickValue = useRef<boolean>(false); // Obecność animacji
 
     const ballStyle = {
         position: "absolute", 
@@ -30,20 +29,25 @@ export default function Ball({position,value,play,add,mainValue,onChangeValue}:P
     
 
     useEffect(() => {
-        // Czas po którym cień ballu zniknie z widoku html
+        // Czas po którym cień piłki znika z widoku html
         setTimeout(()=>{
-            clickValue.current = 0
+            clickValue.current = false
             setClickEnd(oldClickEnd => !oldClickEnd)
         },400)
     }, [click,position])
     
     return(
         <>
-            <div className="ball" style={ballStyle} onClick={()=>{clickValue.current = 1; setClick(oldClick => !oldClick); onChangeValue(add[value][position-1])}}>
+            <div className="ball" style={ballStyle} onClick={
+                ()=>{
+                    clickValue.current = true; 
+                    setClick(oldClick => !oldClick); 
+                    onChangeValue(add[value][position-1])
+                    }}>
                 <label>{value}</label>
             </div>
             {
-                clickValue.current > 0 && <div className="ball" style={{...ballStyle, "--x": position , animation: "clickedAnimation 0.4s ease-out", animationFillMode: "forwards", zIndex: 0 } as CSSProperties}></div>
+                clickValue.current && <div className="ball" style={{...ballStyle, "--x": position , animation: "clickedAnimation 0.4s ease-out", animationFillMode: "forwards", zIndex: 0 } as CSSProperties}></div>
             }
         </>
     )

@@ -5,12 +5,12 @@ import StartButton from './components/StartButton'
 
 function App() {
 
-  const [values, setValues] = useState<number[]>([0,0,0])
-  const [play, setPlay] = useState<boolean>(false)
-  const mainValue = useRef<number>(0)
-  const backgroundPlayRef = useRef<NodeJS.Timeout | null>(null)
-  const goal = useRef<number>(0)
-  const addValues = useRef<[number,number,number][]>([])
+  const [values, setValues] = useState<number[]>([0,0,0]) // Trzy wartości widoczne na trzech piłkach
+  const [play, setPlay] = useState<boolean>(false) // Stan gry
+  const mainValue = useRef<number>(0) // Wartość, która jest aktualnie w trakcie partii
+  const backgroundPlayRef = useRef<NodeJS.Timeout | null>(null) // Animacja początkowa
+  const goal = useRef<number>(0) // Wartość docelowa partii
+  const addValues = useRef<[number,number,number][]>([]) // Zbiór zasad dla określonych wartości w określonych piłkach
 
   const onChangePlay = () => {
     setPlay(true)
@@ -24,6 +24,8 @@ function App() {
   useEffect(() => {
     if(!play){
       goal.current = 0
+
+      // Animacja początkowa
       backgroundPlayRef.current = setInterval(()=>{
           const value1 = Math.floor(Math.random()*10)
           const value2 = Math.floor(Math.random()*10)
@@ -37,14 +39,23 @@ function App() {
   },[play])
 
   useEffect(() => {
+    
+    // Wylosowanie początkowej wartości partii
     const value1 = Math.floor(Math.random()*10)
     const value2 = Math.floor(Math.random()*10)
     const value3 = Math.floor(Math.random()*10)
     setValues([value1,value2,value3])
+    
     mainValue.current = value1*100+value2*10+value3
+
+    // Wylosowanie docelowej wartości różnej od aktualnej
     while(goal.current===value1*100+value2*10+value3||goal.current===0){
       goal.current = Math.floor(Math.random()*1000)
     }
+
+    addValues.current = []
+
+    // Wylosowanie zasad
     for(let i=0; i<10; i++){
       const row: [number,number,number] = [0,0,0];
       row[0] = (Math.floor(Math.random()*200)-100)%100;
@@ -54,14 +65,15 @@ function App() {
 
       addValues.current.push(row)
     }
-    console.log(addValues.current)
 
+    // Przerwanie animacji
     if (play && backgroundPlayRef.current){
       clearInterval(backgroundPlayRef.current)
     }
   },[play])
 
   useEffect(() => {
+    // W momencie osiągnięcia wartości docelowej gra się kończy
     if(mainValue.current===goal.current){
       setPlay(false)
     }
