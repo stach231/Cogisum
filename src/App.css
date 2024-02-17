@@ -23,4 +23,44 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
-  }
+}
+
+#balls{
+  position: absolute;
+  top: 250px;
+  left: 50%;
+  width: 800px;
+  height: 200px;
+  transform: translate(-50%,-50%);
+}
+
+.ball{
+  float: left;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #4444aa;
+}
+
+.ball label{
+  font-size: 60px;
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.myButton{
+  width: 500px;
+  height: 100px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 40px;
+  border-radius: 20px;
+}
+
+@keyframes clickedAnimation{
+  0% {transform: translate(calc(var(--x)*-25%),-50%) scale(100%); opacity: 100%; }
+  100% {transform: translate(calc(var(--x)*-25%),-50%) scale(125%); opacity: 0%;}
+}
