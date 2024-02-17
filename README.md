@@ -1,30 +1,26 @@
-# React + TypeScript + Vite
+# Cogisum
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## About
+Cogisum is my original web logic game written in React and TypeScript.
 
-Currently, two official plugins are available:
+## Rules
+The player's goal is to reach the target score, which is different for each game.</br>
+This can be done by clicking on the number-balls.</br>
+Each value on each of the number-balls results in a different change in the actual value.</br>
+The player must remember the changes to finish the game.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<img src="src/img/screen1.png">
 
-## Expanding the ESLint configuration
+## How to run
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+<ul>
+<li>Enter the system terminal.</li>
+<li>Using the cd command, enter the address of the folder where the repository should be located.</li>
+<li>Go back to GitHub, press the "Code" button and copy the address shown in the newly opened panel.</li>
+<li>Type "git clone 'copied link'" in the terminal and press enter.</li>
+<li>Type "cd Sudoku-Helper".</li>
+<li>Type "npm install" and then "npm run dev".</li>
+<li>Copy the visible link starting with "http://localhost" and paste it into your browser.</li>
+</ul>
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Enjoy!!!

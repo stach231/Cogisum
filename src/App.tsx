@@ -1,3 +1,5 @@
+// Author: stach231
+
 import { useState, useEffect, useRef } from 'react'
 import './App.css'
 import Ball from './components/Ball'
