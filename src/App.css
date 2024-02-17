@@ -14,7 +14,7 @@
   transform: translateX(-50%);
 }
 
-#title label{
+#title label, #goal label{
   position: absolute;
   width: fit-content;
   height: fit-content;
@@ -43,6 +43,7 @@
 }
 
 .ball label{
+  user-select: none;
   font-size: 60px;
   position: absolute;
   width: fit-content;
@@ -53,11 +54,47 @@
 }
 
 .myButton{
-  width: 500px;
+  width: 400px;
   height: 100px;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 40px;
   border-radius: 20px;
+  background-color: #5555dd;
+  border: none;
+  position: relative;
+}
+
+.myButton:hover{
+  background-color: #3333bb;
+  z-index: 2;
+}
+
+.myButton:hover::before{
+  content: "";
+  width: 400px;
+  height: 100px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 40px;
+  border-radius: 20px;
+  background-color: #5555dd;
+  border: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  --x: 2;
+  z-index: 1;
+  animation: clickedAnimation 0.4s ease-out;
+  animation-fill-mode: forwards;
+  
+}
+
+#goal{
+  width: 900px;
+  height: 100px;
+  position: absolute;
+  left: 50%;
+  top: 400px;
+  transform: translateX(-50%);
 }
 
 @keyframes clickedAnimation{

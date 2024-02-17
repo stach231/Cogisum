@@ -5,13 +5,18 @@ import "../App.css"
 interface Props{
     position: number;
     value: number;
+    play: boolean;
+    add: [number,number,number][];
+    mainValue: number;
+    onChangeValue: (newValue:number) => void;
 }
 
 
-export default function Ball({position,value}:Props){
+export default function Ball({position,value,play,add,mainValue,onChangeValue}:Props){
     
     const [click, setClick] = useState<boolean>(false);
     const [clickEnd, setClickEnd] = useState<boolean>(false);
+    const [randomValue, setRandomValue] = useState<number>(0);
     const clickValue = useRef<number>(0); 
 
     const ballStyle = {
@@ -21,6 +26,8 @@ export default function Ball({position,value}:Props){
         transform: `translate(-${25*position}%,-50%)`,
         zIndex: 1
     }
+
+    
 
     useEffect(() => {
         // Czas po którym cień ballu zniknie z widoku html
@@ -32,7 +39,7 @@ export default function Ball({position,value}:Props){
     
     return(
         <>
-            <div className="ball" style={ballStyle} onClick={()=>{clickValue.current = 1; setClick(oldClick => !oldClick); }}>
+            <div className="ball" style={ballStyle} onClick={()=>{clickValue.current = 1; setClick(oldClick => !oldClick); onChangeValue(add[value][position-1])}}>
                 <label>{value}</label>
             </div>
             {
